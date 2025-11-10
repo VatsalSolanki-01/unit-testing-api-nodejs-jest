@@ -1,5 +1,4 @@
 FROM node:18.19.1
-FROM mongo:7.0.25
 
 WORKDIR /app
 
