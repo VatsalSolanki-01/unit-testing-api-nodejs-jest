@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const app = require("./server");
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URL = process.env.MONGO_URL || "mongodb://localhost:27017/JestDB";
+const MONGO_URL = process.env.MONGO_URL || "mongodb://mongo:27017/JestDB";
 
 // Connect to MongoDB
 mongoose
