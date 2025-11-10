@@ -1,5 +1,18 @@
-version: "3"
 services:
+  mongo:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
   app:
     build: .
     container_name: node-app
@@ -8,15 +21,8 @@ services:
     environment:
       - MONGO_URL=mongodb://mongo:27017/JestDB
     depends_on:
-      - mongo
-
-  mongo:
-    image: mongo:7.0
-    container_name: mongodb
-    ports:
-      - "27018:27017"
-    volumes:
-      - mongo_data:/data/db
+      mongo:
+        condition: service_healthy
 
 volumes:
   mongo_data:
