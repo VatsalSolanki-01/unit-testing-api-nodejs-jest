@@ -1,6 +1,6 @@
 version: "3"
 services:
-  node-app:
+  app:
     build: .
     container_name: node-app
     ports:
@@ -12,6 +12,7 @@ services:
 
   mongo:
     image: mongo:7.0
+    container_name: mongodb
     ports:
       - "27018:27017"
     volumes:
